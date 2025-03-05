@@ -25,35 +25,34 @@
 
         /* Left Section */
         .left-section {
-            width: 50%;
+            width: 25%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
-            position: relative;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             border-right: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
         }
 
         /* Glass Panel */
         .glass-box {
             background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 20px;
+            border-radius: 12px;
             backdrop-filter: blur(10px);
             box-shadow: 0px 10px 30px rgba(0, 150, 255, 0.3);
-            text-align: center;
-            max-width: 90%;
+            width: 100%;
         }
 
         .glass-box h1 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
             background: linear-gradient(90deg, #00c6ff, #0072ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -64,12 +63,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 85%;
+            width: 90%;
             padding: 12px;
-            margin: 8px 0;
+            margin: 6px auto;
             background: linear-gradient(135deg, #00c6ff, #0072ff);
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             text-decoration: none;
             border-radius: 8px;
@@ -88,24 +87,24 @@
         .social-links {
             display: flex;
             justify-content: center;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .social-links a {
-            margin: 0 10px;
-            font-size: 22px;
+            margin: 0 12px;
+            font-size: 26px;
             color: white;
             transition: 0.3s ease-in-out;
         }
 
         .social-links a:hover {
             color: #00c6ff;
-            transform: scale(1.2);
+            transform: scale(1.3);
         }
 
         /* Right Section */
         .right-section {
-            width: 50%;
+            width: 75%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -123,9 +122,43 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
+        /* Mobile Warning */
+        #mobile-alert {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 999;
+        }
+
+        #mobile-alert img {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            #mobile-alert {
+                display: flex;
+            }
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- Mobile Alert -->
+    <div id="mobile-alert">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827433.png" alt="Rotate Phone">
+        <p>Please rotate your phone to landscape mode for the best experience.</p>
+    </div>
 
     <!-- Left Section -->
     <div class="left-section">
@@ -137,6 +170,7 @@
             <a href="https://calendly.com/info-2pm/30min?month=2025-03" class="button" target="_blank">BOOK A CALL</a>
             <a href="https://umustsee.net/QXI7EC" class="button" target="_blank">BUSINESS PRESENTATION</a>
             <a href="https://datascalepro.com/" class="button" target="_blank">SCALE YOUR BUSINESS</a>
+            <a href="https://yourbookdownloadlink.com" class="button" target="_blank">DOWNLOAD MY BOOK</a>
 
             <!-- Social Media Links -->
             <div class="social-links">
@@ -156,7 +190,7 @@
     <script>
         !function(window){
             const host="https://labs.heygen.com",
-                url=host+"/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJiOGQwMjFmZThkNDc0Zjc3ODY2MDY2MTAz%0D%0AMjQyMjk3NiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0AL2I4ZDAyMWZlOGQ0NzRmNzc4NjYwNjYxMDMyNDIyOTc2L2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjVj%0D%0AYjM3YzdjZWEwODRiOGM5ZWZiZjZmNGRiZTM3ZDE4IiwidXNlcm5hbWUiOiIzZDRkZTY0NDJmMDU0%0D%0ANjhlYjgyMDllMTQ0ODczYzY1MSJ9&inIFrame=1",
+                url=host+"/guest/streaming-embed?share=...",
                 wrapDiv=document.getElementById("streaming-embed");
 
             const container=document.createElement("div");
