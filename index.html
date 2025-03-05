@@ -3,80 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Script</title>
+    <title>Scott DePeralta - Interactive Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        /* Left Section with Buttons */
+        .left-section {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .button {
+            display: block;
+            width: 80%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Right Section with Chatbot */
+        .right-section {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #streaming-embed {
+            width: 90%;
+            height: 90%;
+            border-radius: 8px;
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Interactive Script</h1>
+
+    <!-- Left Section with Navigation Buttons -->
+    <div class="left-section">
+        <a href="https://www.ScottDePeralta.com" class="button" target="_blank">MY WEBSITE</a>
+        <a href="https://medium.com/@scottdeperalta" class="button" target="_blank">MY BLOG</a>
+        <a href="https://digitalbusinesscard.scottdeperalta.com/" class="button" target="_blank">MY CONTACT INFO</a>
+        <a href="https://calendly.com/info-2pm/30min?month=2025-03" class="button" target="_blank">BOOK A CALL</a>
+        <a href="https://umustsee.net/QXI7EC" class="button" target="_blank">BUSINESS PRESENTATION</a>
+        <a href="https://datascalepro.com/" class="button" target="_blank">SCALE YOUR BUSINESS</a>
+    </div>
+
+    <!-- Right Section with Chatbot -->
+    <div class="right-section">
+        <div id="streaming-embed"></div>
+    </div>
+
+    <!-- Chatbot Script -->
     <script>
         !function(window){
             const host="https://labs.heygen.com",
                 url=host+"/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJiOGQwMjFmZThkNDc0Zjc3ODY2MDY2MTAz%0D%0AMjQyMjk3NiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0AL2I4ZDAyMWZlOGQ0NzRmNzc4NjYwNjYxMDMyNDIyOTc2L2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6Ijk1%0D%0AMWNmOTA2ZDA0MjQ5ZDc5NjYzM2M3NWQ3YjU2NDYyIiwidXNlcm5hbWUiOiIzZDRkZTY0NDJmMDU0%0D%0ANjhlYjgyMDllMTQ0ODczYzY1MSJ9&inIFrame=1",
-                clientWidth=document.body.clientWidth,
-                wrapDiv=document.createElement("div");
-            
-            wrapDiv.id="streaming-embed";
-            
+                wrapDiv=document.getElementById("streaming-embed");
+
             const container=document.createElement("div");
             container.id="streaming-container";
-            
-            const stylesheet=document.createElement("style");
-            stylesheet.innerHTML=`
-              #streaming-embed {
-                z-index: 9999;
-                position: fixed;
-                left: 40px;
-                bottom: 40px;
-                width: 200px;
-                height: 200px;
-                border-radius: 50%;
-                border: 2px solid #fff;
-                box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
-                transition: all linear 0.1s;
-                overflow: hidden;
-                opacity: 0;
-                visibility: hidden;
-              }
-              #streaming-embed.show {
-                opacity: 1;
-                visibility: visible;
-              }
-              #streaming-embed.expand {
-                ${clientWidth<540?"height: 266px; width: 96%; left: 50%; transform: translateX(-50%);":"height: 366px; width: calc(366px * 16 / 9);"}
-                border: 0;
-                border-radius: 8px;
-              }
-              #streaming-container {
-                width: 100%;
-                height: 100%;
-              }
-              #streaming-container iframe {
-                width: 100%;
-                height: 100%;
-                border: 0;
-              }
-            `;
-            
+            container.style.width = "100%";
+            container.style.height = "100%";
+
             const iframe=document.createElement("iframe");
             iframe.allowFullscreen=!1;
             iframe.title="Streaming Embed";
             iframe.role="dialog";
             iframe.allow="microphone";
             iframe.src=url;
-            
-            let visible=!1,initial=!1;
-            
-            window.addEventListener("message", (e=>{
-                e.origin===host && e.data && e.data.type && "streaming-embed"===e.data.type &&
-                ("init"===e.data.action ? (initial=!0, wrapDiv.classList.toggle("show",initial)) :
-                "show"===e.data.action ? (visible=!0, wrapDiv.classList.toggle("expand",visible)) :
-                "hide"===e.data.action && (visible=!1, wrapDiv.classList.toggle("expand",visible)));
-            }));
-            
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "0";
+
             container.appendChild(iframe);
-            wrapDiv.appendChild(stylesheet);
             wrapDiv.appendChild(container);
-            document.body.appendChild(wrapDiv);
         }(globalThis);
     </script>
+
 </body>
 </html>
